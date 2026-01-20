@@ -38,7 +38,8 @@ class RecorderRs < Formula
 
   service do
     run [opt_bin/"recorder-rs"]
-    keep_alive true
+    keep_alive always: true
+    restart_delay 5
     log_path var/"log/recorder-rs.log"
     error_log_path var/"log/recorder-rs.error.log"
     environment_variables PATH: std_service_path_env
