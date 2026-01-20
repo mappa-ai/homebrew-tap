@@ -31,7 +31,6 @@ class RecorderRs < Formula
 
   depends_on :macos
   depends_on "switchaudio-osx"
-  depends_on cask: "blackhole-2ch"
 
   def install
     bin.install "recorder-rs"
@@ -51,16 +50,19 @@ class RecorderRs < Formula
 
       IMPORTANT: After installation, you must complete these steps:
 
-      1. REBOOT your Mac
+      1. Install BlackHole audio driver (if not already installed):
+         brew install --cask blackhole-2ch
+
+      2. REBOOT your Mac
          BlackHole audio driver requires a reboot to load properly.
 
-      2. Configure Audio MIDI Setup:
+      3. Configure Audio MIDI Setup:
          - Open "Audio MIDI Setup" (in /Applications/Utilities)
          - Click "+" at bottom left -> "Create Multi-Output Device"
          - Check your output device (speakers/headphones) AND "BlackHole 2ch"
          - Right-click the new device -> Rename to "mappa-recorder-device"
 
-      3. Start the service:
+      4. Start the service:
          brew services start recorder-rs
 
       Service Management:
