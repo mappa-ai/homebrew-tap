@@ -2,6 +2,11 @@
 
 Official Homebrew tap for Mappa.ai tools.
 
+## Requirements
+
+- **macOS 14.6 (Sonoma)** or later for system audio recording
+- macOS 14.0+ for input device recording only
+
 ## Installation
 
 ```bash
@@ -9,29 +14,9 @@ brew tap mappa-ai/tap
 brew install recorder-rs
 ```
 
-This will automatically install:
-- **recorder-rs** - Headless audio recording service
-- **switchaudio-osx** - Audio device switcher (dependency)
-- **blackhole-2ch** - Virtual audio driver (dependency)
+This will install **recorder-rs** - a headless audio recording service with HTTP API.
 
-## Post-installation Setup
-
-### 1. Reboot Required
-
-**You must reboot your Mac** after installation for the BlackHole audio driver to load.
-
-### 2. Configure Audio MIDI Setup
-
-After rebooting:
-
-1. Open **Audio MIDI Setup** (in `/Applications/Utilities/`)
-2. Click **"+"** at bottom left -> **"Create Multi-Output Device"**
-3. Check both:
-   - Your output device (speakers/headphones)
-   - **BlackHole 2ch**
-4. Right-click the new device -> **Rename to "mappa-recorder-device"**
-
-### 3. Start the Service
+## Start the Service
 
 ```bash
 brew services start recorder-rs
@@ -86,25 +71,7 @@ brew services stop recorder-rs
 brew uninstall recorder-rs
 ```
 
-To also remove dependencies:
-```bash
-brew uninstall switchaudio-osx
-brew uninstall --cask blackhole-2ch
-```
-
 ## Troubleshooting
-
-### "SwitchAudioSource not found"
-
-```bash
-brew install switchaudio-osx
-```
-
-### "BlackHole not found" after installation
-
-1. Make sure you've rebooted after installing
-2. Check if BlackHole appears in Audio MIDI Setup
-3. Try reinstalling: `brew reinstall --cask blackhole-2ch`
 
 ### Service won't start
 
@@ -113,11 +80,9 @@ Check the error log:
 cat $(brew --prefix)/var/log/recorder-rs.error.log
 ```
 
-### Recording has no audio
+### System audio recording not working
 
-1. Verify the Multi-Output Device is configured correctly
-2. Ensure it's named exactly `mappa-recorder-device`
-3. Check that BlackHole 2ch is checked in the Multi-Output Device
+Ensure you are running macOS 14.6 or later. System audio recording uses native ScreenCaptureKit loopback which requires macOS 14.6+.
 
 ## Support
 

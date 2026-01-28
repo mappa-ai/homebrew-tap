@@ -163,7 +163,7 @@ launchctl list | grep recorder
 
 ## Important Notes
 
-- macOS-only (uses macOS audio APIs)
+- macOS 14.6+ required for system audio recording (uses native ScreenCaptureKit loopback)
+- macOS 14.0+ required for input device recording
 - Binaries hosted on mappa CDN (pre-compiled)
-- `blackhole-2ch` requires system reboot
 - Service runs on `http://localhost:20432`

@@ -9,9 +9,7 @@
 #   brew install recorder-rs
 #
 # After installation:
-#   1. Reboot your Mac (required for BlackHole)
-#   2. Configure Audio MIDI Setup (see caveats)
-#   3. Start the service: brew services start recorder-rs
+#   Start the service: brew services start recorder-rs
 class RecorderRs < Formula
   desc "Headless audio recording service with HTTP API"
   homepage "https://github.com/mappa-ai/recorder-rs"
@@ -30,7 +28,7 @@ class RecorderRs < Formula
   end
 
   depends_on :macos
-  depends_on "switchaudio-osx"
+  depends_on macos: :sonoma # Requires macOS 14+ for native loopback
 
   def install
     bin.install "recorder-rs"
@@ -49,22 +47,11 @@ class RecorderRs < Formula
     <<~EOS
       recorder-rs has been installed!
 
-      IMPORTANT: After installation, you must complete these steps:
+      NOTE: System audio recording requires macOS 14.6 or later.
+            Input device recording works on macOS 14.0+.
 
-      1. Install BlackHole audio driver (if not already installed):
-         brew install --cask blackhole-2ch
-
-      2. REBOOT your Mac
-         BlackHole audio driver requires a reboot to load properly.
-
-      3. Configure Audio MIDI Setup:
-         - Open "Audio MIDI Setup" (in /Applications/Utilities)
-         - Click "+" at bottom left -> "Create Multi-Output Device"
-         - Check your output device (speakers/headphones) AND "BlackHole 2ch"
-         - Right-click the new device -> Rename to "mappa-recorder-device"
-
-      4. Start the service:
-         brew services start recorder-rs
+      Start the service:
+        brew services start recorder-rs
 
       Service Management:
         brew services start recorder-rs    # Start service
