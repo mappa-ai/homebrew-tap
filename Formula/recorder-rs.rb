@@ -13,17 +13,17 @@
 class RecorderRs < Formula
   desc "Headless audio recording service with HTTP API"
   homepage "https://github.com/mappa-ai/recorder-rs"
-  version "3.0.2"
+  version "1.1.4"
   license :cannot_represent
 
   on_macos do
     on_arm do
       url "https://mappa-content-delivery-network.mappa.ai/releases/recorder-rs-aarch64-apple-darwin.tar.gz"
-      sha256 "dc751df28c9b1eea71dd44f3605acbe38073e7304d1305f3cf3cc086435590cd"
+      sha256 "071dc38178d46cf64c4d305aed0fbe936c03b0f3ea459b724249205d2f8b4375"
     end
     on_intel do
       url "https://mappa-content-delivery-network.mappa.ai/releases/recorder-rs-x86_64-apple-darwin.tar.gz"
-      sha256 "8e718f381afb5647be93996d8f91d7eeb94d6438440eec2199e5271357ba1606"
+      sha256 "df065c1e3241abc8d93e162a0b3afb9dd2aa429f822c791430fc79b8ed0fab50"
     end
   end
 
